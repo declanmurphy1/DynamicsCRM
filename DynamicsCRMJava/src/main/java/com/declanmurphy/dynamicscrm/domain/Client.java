@@ -1,7 +1,11 @@
 package com.declanmurphy.dynamicscrm.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -10,16 +14,26 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Client Name is required")
     private String clientName;
+    @NotBlank(message = "Client Identifier is required")
+    @Size(min=3, max=6, message = "Please use 3 to 6 characters")
+    @Column(updatable = false, unique = true)
     private String clientIdentifier;
     private String description;
+    @NotBlank(message = "Client Owner is required")
     private String owner;
+    @NotBlank(message = "Address Line 1 is required")
     private String addressLine1;
     private String addressLine2;
+    @NotBlank(message = "County is required")
     private String county;
+    @NotBlank(message = "Country is required")
     private String country;
 
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_at;
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_at;
 
     public Client() {
