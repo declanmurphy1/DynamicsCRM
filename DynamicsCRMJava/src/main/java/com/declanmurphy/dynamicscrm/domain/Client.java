@@ -16,6 +16,7 @@ public class Client {
     private Long id;
     @NotBlank(message = "Client Name is required")
     private String clientName;
+
     @NotBlank(message = "Client Identifier is required")
     @Size(min=3, max=6, message = "Please use 3 to 6 characters")
     @Column(updatable = false, unique = true)
