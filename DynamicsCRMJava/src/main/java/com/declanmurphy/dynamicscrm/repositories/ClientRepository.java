@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientRepository extends CrudRepository<Client, Long> {
+
+    Client findByClientIdentifier(String clientId);
+
     @Override
-    Iterable<Client> findAllById(Iterable<Long> iterable);
+    Iterable<Client> findAll();
 }

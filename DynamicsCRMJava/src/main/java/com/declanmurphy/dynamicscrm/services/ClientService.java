@@ -25,4 +25,29 @@ public class ClientService {
 
     }
 
+    public Client findClientByIdentifier(String clientId) {
+
+        Client client = clientRepository.findByClientIdentifier(clientId.toUpperCase());
+
+        if (client == null) {
+            throw new ClientIdException("Client ID '" + clientId +"' does not exists");
+        }
+
+        return client;
+    }
+
+    public Iterable<Client> findAllClients(){
+        return clientRepository.findAll();
+    }
+
+    public void deleteClientByIdentifier(String clientId){
+        Client client = clientRepository.findByClientIdentifier(clientId.toUpperCase());
+
+        if (client == null) {
+            throw new ClientIdException("Client with ID '"+clientId+"' does not exist");
+        }
+
+        clientRepository.delete(client);
+    }
+
 }

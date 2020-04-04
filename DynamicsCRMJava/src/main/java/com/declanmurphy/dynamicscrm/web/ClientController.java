@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -38,4 +35,24 @@ public class ClientController {
             Client client1 = clientService.saveOrUpdateClient(client);
             return new ResponseEntity<Client>(client1, HttpStatus.CREATED);
     }
+
+    @GetMapping("/{clientId}")
+    public ResponseEntity<?> getClientById(@PathVariable String clientId){
+        Client client = clientService.findClientByIdentifier(clientId);
+
+        return new ResponseEntity<Client>(client, HttpStatus.OK);
+    }
+
+    @GetMapping("/all")
+    public Iterable<Client> getAllClients(){
+        return clientService.findAllClients();
+    }
+
+    @DeleteMapping("/{clientId}")
+    public ResponseEntity<?> deleteClient(@PathVariable String clientId) {
+        clientService.deleteClientByIdentifier(clientId);
+
+        return new ResponseEntity<String>("Client with ID '" + clientId + "' was deleted", HttpStatus.OK);
+    }
+
 }
