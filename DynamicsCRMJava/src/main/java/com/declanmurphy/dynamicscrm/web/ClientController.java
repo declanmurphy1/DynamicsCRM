@@ -55,4 +55,13 @@ public class ClientController {
         return new ResponseEntity<String>("Client with ID '" + clientId + "' was deleted", HttpStatus.OK);
     }
 
+    @PatchMapping("/{clientId}")
+    public ResponseEntity<?>updateClient(@PathVariable String clientId) {
+        Client client = clientService.findClientByIdentifier(clientId);
+
+        clientService.saveOrUpdateClient(client);
+
+        return new ResponseEntity<String>("Client with ID '" + clientId + "' was updated", HttpStatus.OK);
+    }
+
 }
