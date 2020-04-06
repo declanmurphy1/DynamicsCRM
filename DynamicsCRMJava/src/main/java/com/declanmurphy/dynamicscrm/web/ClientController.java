@@ -16,8 +16,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @RestController
 @RequestMapping("/api/client")
+@CrossOrigin
 public class ClientController {
 
     @Autowired

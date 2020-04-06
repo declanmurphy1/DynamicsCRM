@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {createClient} from "../../actions/clientActions";
 
 class AddClient extends Component {
   constructor() {
@@ -38,7 +41,7 @@ class AddClient extends Component {
       industry: this.state.industry,
     };
 
-    console.log(newClient);
+    this.props.createClient(newClient, this.props.history)
   }
 
   render() {
@@ -157,4 +160,9 @@ class AddClient extends Component {
   }
 }
 
-export default AddClient;
+AddClient.propTypes = {
+  createClient : PropTypes.func.isRequired
+}
+
+
+export default connect(null, {createClient}) (AddClient);
