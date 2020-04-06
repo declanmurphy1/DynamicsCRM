@@ -31,6 +31,7 @@ public class Client {
     private String county;
     @NotBlank(message = "Country is required")
     private String country;
+    private String industry;
 
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date created_at;
@@ -38,6 +39,14 @@ public class Client {
     private Date updated_at;
 
     public Client() {
+    }
+
+    public String getIndustry() {
+        return industry;
+    }
+
+    public void setIndustry(String industry) {
+        this.industry = industry;
     }
 
     public Long getId() {
