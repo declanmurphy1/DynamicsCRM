@@ -6,6 +6,10 @@ export const createClient = (client, history) => async (dispatch) => {
   try {
     const res = await axios.post("http://localhost:8080/api/client", client);
     history.push("/dashboard");
+    dispatch({
+      type: GET_ERRORS,
+      payload: {}
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -23,9 +27,14 @@ export const getClients = () => async dispatch => {
 }
 
 export const getClient = (id, history) => async dispatch => {
-  const res = await axios.get(`http://localhost:8080/api/client/${id}`)
+
+  try{
+    const res = await axios.get(`http://localhost:8080/api/client/${id}`)
   dispatch({
     type:GET_CLIENT,
     payload: res.data
   });
+  } catch (error) {
+    history.push('/dashboard')
+  }
 };

@@ -18,13 +18,18 @@ class UpdateClient extends Component {
       addressLine2: "",
       county: "",
       country: "",
-      industry: ""
+      industry: "",
+      errors: {}
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
+      if(nextProps.errors) {
+          this.setState({errors:nextProps.errors});
+      }
+
       const {
         id,
         clientName,
@@ -81,6 +86,8 @@ class UpdateClient extends Component {
   }
 
   render() {
+
+    const {errors} = this.state;
     return (
       <div className="project">
         <div className="container">
@@ -92,12 +99,19 @@ class UpdateClient extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg "
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid":errors.clientName
+                    })}
                     placeholder="Client Name"
                     name="clientName"
                     value={this.state.clientName}
                     onChange={this.onChange}
                   />
+                  {
+                      errors.clientName && (
+                          <div className="invalid-feedback">{errors.clientName}</div>
+                      )
+                  }
                 </div>
                 <div className="form-group">
                   <input
@@ -112,12 +126,19 @@ class UpdateClient extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid":errors.owner
+                    })}
                     placeholder="Client Owner"
                     value={this.state.owner}
                     onChange={this.onChange}
                     name="owner"
                   />
+                  {
+                    errors.owner && (
+                        <div className="invalid-feedback">{errors.owner}</div>
+                    )
+                }
                 </div>
                 <div className="form-group">
                   <input
@@ -142,12 +163,19 @@ class UpdateClient extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid":errors.addressLine1
+                    })}
                     placeholder="Line 1"
                     name="addressLine1"
                     value={this.state.addressLine1}
                     onChange={this.onChange}
                   />
+                  {
+                    errors.addressLine1 && (
+                        <div className="invalid-feedback">{errors.addressLine1}</div>
+                    )
+                }
                 </div>
                 <div className="form-group">
                   <input
@@ -162,22 +190,36 @@ class UpdateClient extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid":errors.county
+                    })}
                     placeholder="County"
                     name="county"
                     value={this.state.county}
                     onChange={this.onChange}
                   />
+                  {
+                    errors.county && (
+                        <div className="invalid-feedback">{errors.county}</div>
+                    )
+                }
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                        "is-invalid":errors.country
+                    })}
                     placeholder="Country"
                     name="country"
                     value={this.state.country}
                     onChange={this.onChange}
                   />
+                  {
+                    errors.country && (
+                        <div className="invalid-feedback">{errors.country}</div>
+                    )
+                }
                 </div>
 
                 <input
@@ -196,11 +238,13 @@ class UpdateClient extends Component {
 UpdateClient.propTypes = {
   getClient: PropTypes.func.isRequired,
   createClient: PropTypes.func.isRequired,
-  client: PropTypes.object.isRequired
+  client: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => ({
   client: state.client.client,
+  errors: state.errors
 });
 
 export default connect(mapStateToProps, { getClient, createClient })(UpdateClient);
