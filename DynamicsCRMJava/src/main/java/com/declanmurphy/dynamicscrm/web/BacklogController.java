@@ -1,7 +1,6 @@
 package com.declanmurphy.dynamicscrm.web;
 
 import com.declanmurphy.dynamicscrm.domain.Opportunity;
-import com.declanmurphy.dynamicscrm.services.ClientService;
 import com.declanmurphy.dynamicscrm.services.MapValidationErrorService;
 import com.declanmurphy.dynamicscrm.services.OpportunityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/backlog")
