@@ -1,26 +1,33 @@
-import {GET_CLIENTS, GET_CLIENT} from "../actions/types";
+import { GET_CLIENTS, GET_CLIENT, DELETE_CLIENT } from "../actions/types";
 
 const initialState = {
-    clients:[],
-    client: {}
+  clients: [],
+  client: {},
 };
 
-export default function(state = initialState, action) {
-    switch(action.type) {
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case GET_CLIENTS:
+      return {
+        ...state,
+        clients: action.payload,
+      };
 
-        case GET_CLIENTS:
-        return {
-            ...state,
-            clients: action.payload
-        }
+    case GET_CLIENT:
+      return {
+        ...state,
+        client: action.payload,
+      };
 
-        case GET_CLIENT:
-            return{
-                ...state,
-                client: action.payload
-            }
+    case DELETE_CLIENT:
+      return {
+        ...state,
+        clients: state.clients.filter(
+          (client) => client.clientIdentifier !== action.payload
+        ),
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 }
