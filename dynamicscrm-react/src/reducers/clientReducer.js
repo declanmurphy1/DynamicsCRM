@@ -1,4 +1,4 @@
-import {GET_CLIENTS} from "../actions/types";
+import {GET_CLIENTS, GET_CLIENT} from "../actions/types";
 
 const initialState = {
     clients:[],
@@ -13,6 +13,12 @@ export default function(state = initialState, action) {
             ...state,
             clients: action.payload
         }
+
+        case GET_CLIENT:
+            return{
+                ...state,
+                client: action.payload
+            }
 
         default:
             return state;

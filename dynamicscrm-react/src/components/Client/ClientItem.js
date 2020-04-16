@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
 class ClientItem extends Component {
   render() {
@@ -40,11 +41,11 @@ class ClientItem extends Component {
                   </li>
                 </a>
                 <br/>
-                <a href="#">
+                <Link to={`/updateClient/${client.clientIdentifier}`}>
                   <li className="list-group-item update">
                     <i className="fa fa-edit pr-1"> Update Client Info</i>
                   </li>
-                </a>
+                </Link>
                 <br/>
                 <a href="">
                   <li className="list-group-item delete">

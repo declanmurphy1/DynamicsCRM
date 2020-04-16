@@ -1,5 +1,6 @@
 import axios from "axios";
-import { GET_ERRORS, GET_CLIENTS } from "./types";
+import { GET_ERRORS, GET_CLIENTS, GET_CLIENT } from "./types";
+import { bindActionCreators } from "redux";
 
 export const createClient = (client, history) => async (dispatch) => {
   try {
@@ -20,3 +21,11 @@ export const getClients = () => async dispatch => {
     payload: res.data
   })
 }
+
+export const getClient = (id, history) => async dispatch => {
+  const res = await axios.get(`http://localhost:8080/api/client/${id}`)
+  dispatch({
+    type:GET_CLIENT,
+    payload: res.data
+  });
+};
