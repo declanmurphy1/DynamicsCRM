@@ -1,7 +1,9 @@
 package com.declanmurphy.dynamicscrm.services;
 
+import com.declanmurphy.dynamicscrm.domain.Backlog;
 import com.declanmurphy.dynamicscrm.domain.Client;
 import com.declanmurphy.dynamicscrm.exceptions.ClientIdException;
+import com.declanmurphy.dynamicscrm.repositories.BacklogRepository;
 import com.declanmurphy.dynamicscrm.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +14,25 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
+    @Autowired
+    private BacklogRepository backlogRepository;
+
     public Client saveOrUpdateClient(Client client) {
 
         try {
             client.setClientIdentifier(client.getClientIdentifier().toUpperCase());
+
+            if (client.getId() == null) {
+                Backlog backlog = new Backlog();
+                client.setBacklog(backlog);
+                backlog.setClient(client);
+                backlog.setClientIdentifier(client.getClientIdentifier().toUpperCase());
+            }
+
+            if (client.getId() != null){
+                client.setBacklog(backlogRepository.findByClientIdentifier(client.getClientIdentifier().toUpperCase()));
+            }
+
             return clientRepository.save(client);
 
         }catch (Exception e) {

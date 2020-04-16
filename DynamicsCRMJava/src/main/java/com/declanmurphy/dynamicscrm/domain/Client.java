@@ -2,6 +2,7 @@ package com.declanmurphy.dynamicscrm.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,6 +39,10 @@ public class Client {
     private Date created_at;
     @JsonFormat(pattern = "yyyy-mm-dd")
     private Date updated_at;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "client")
+    @JsonIgnore
+    private Backlog backlog;
 
     public Client() {
     }
@@ -136,6 +141,14 @@ public class Client {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public Backlog getBacklog() {
+        return backlog;
+    }
+
+    public void setBacklog(Backlog backlog) {
+        this.backlog = backlog;
     }
 
     @PrePersist
