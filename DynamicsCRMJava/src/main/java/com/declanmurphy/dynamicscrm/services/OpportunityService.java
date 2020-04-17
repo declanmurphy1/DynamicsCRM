@@ -85,8 +85,21 @@ public class OpportunityService {
         if (!opportunity.getClientIdentifier().equals(backlog_id)) {
             throw new ClientNotFoundException("Opportunity '" + opp_id + "' does not exist for client '" + backlog_id + "'");
         }
-        
+
         return opportunity;
+    }
+
+    public Opportunity updateByClientSequence(Opportunity updatedOpp, String backlog_id, String opp_id) {
+        Opportunity opportunity = opportunityRepository.findByClientSequence(opp_id);
+
+
+        opportunity = updatedOpp;
+
+        opportunity.setBacklog(backlogRepository.findByClientIdentifier(backlog_id));
+
+        return opportunityRepository.save(opportunity);
+
+
     }
 
 

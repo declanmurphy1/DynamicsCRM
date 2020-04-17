@@ -47,4 +47,18 @@ public class BacklogController {
         return new ResponseEntity<Opportunity>(opportunity, HttpStatus.OK);
     }
 
+    @PatchMapping("/{backlog_id}/{opp_id}")
+    public ResponseEntity<?> updateOpportunity(@Valid @RequestBody Opportunity opportunity, BindingResult result,
+                                               @PathVariable String backlog_id, @PathVariable String opp_id){
+
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        Opportunity updatedOpportunity = opportunityService.updateByClientSequence(opportunity, backlog_id, opp_id);
+
+        return new ResponseEntity<Opportunity>(updatedOpportunity, HttpStatus.OK);
+
+
+    }
+
 }
