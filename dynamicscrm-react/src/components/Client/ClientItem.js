@@ -49,11 +49,11 @@ class ClientItem extends Component {
                   </li>
                 </Link>
                 <br />
-                <a href="#">
+                <Link>
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1"> View Contacts </i>
                   </li>
-                </a>
+                </Link>
                 <br />
                 <Link to={`/updateClient/${client.clientIdentifier}`}>
                   <li className="list-group-item update">

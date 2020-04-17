@@ -23,7 +23,10 @@ public class Opportunity {
     private Integer outcome;
     @NotNull(message = "Close Date is required")
     private Date closeDate;
-
+    @NotBlank(message = "Opportunity Owner is required")
+    private String owner;
+    @NotBlank(message = "Department is required")
+    private String department;
     @NotNull(message = "Please Enter and Opportunity Value")
     private Double oppValue;
 
@@ -136,6 +139,22 @@ public class Opportunity {
 
     public void setBacklog(Backlog backlog) {
         this.backlog = backlog;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     @PrePersist

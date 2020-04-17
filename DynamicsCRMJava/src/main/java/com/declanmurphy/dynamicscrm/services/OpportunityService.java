@@ -43,7 +43,7 @@ public class OpportunityService {
 
             opportunity.setClientIdentifier(clientIdentifier);
 
-            if (opportunity.getOutcome() == null) { // in the future we need to handle case for outcome set to 0
+            if (opportunity.getOutcome() == 0 || opportunity.getOutcome() == null) { // in the future we need to handle case for outcome set to 0
                 opportunity.setOutcome(3);
             }
 
