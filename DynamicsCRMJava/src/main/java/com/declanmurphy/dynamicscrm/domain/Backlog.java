@@ -22,7 +22,7 @@ public class Backlog {
     private Client client;
 
 //    One to Many with the opportunities
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "backlog")
+    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "backlog", orphanRemoval = true)
     private List<Opportunity> opportunities = new ArrayList<>();
 
 

@@ -57,8 +57,13 @@ public class BacklogController {
         Opportunity updatedOpportunity = opportunityService.updateByClientSequence(opportunity, backlog_id, opp_id);
 
         return new ResponseEntity<Opportunity>(updatedOpportunity, HttpStatus.OK);
+    }
 
+    @DeleteMapping("/{backlog_id}/{opp_id}")
+    public ResponseEntity<?> deleteOpportunity(@PathVariable String backlog_id, @PathVariable String opp_id){
+        opportunityService.deleteOpportunityByClientSequence(backlog_id,opp_id);
 
+        return new ResponseEntity<String>("Opportunity with ID '" + opp_id + "' was deleted successfully", HttpStatus.OK);
     }
 
 }

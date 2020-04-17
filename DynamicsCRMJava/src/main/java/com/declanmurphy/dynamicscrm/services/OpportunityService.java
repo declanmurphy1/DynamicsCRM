@@ -10,6 +10,8 @@ import com.declanmurphy.dynamicscrm.repositories.OpportunityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OpportunityService {
 
@@ -90,15 +92,23 @@ public class OpportunityService {
     }
 
     public Opportunity updateByClientSequence(Opportunity updatedOpp, String backlog_id, String opp_id) {
-        Opportunity opportunity = opportunityRepository.findByClientSequence(opp_id);
+        Opportunity opportunity = findOppByClientSequence(backlog_id, opp_id);
 
 
         opportunity = updatedOpp;
 
-        opportunity.setBacklog(backlogRepository.findByClientIdentifier(backlog_id));
-
         return opportunityRepository.save(opportunity);
+    }
 
+    public void deleteOpportunityByClientSequence(String backlog_id, String opp_id){
+        Opportunity opportunity = findOppByClientSequence(backlog_id, opp_id);
+
+//        Backlog backlog = opportunity.getBacklog();
+//        List<Opportunity> opps = backlog.getOpportunities();
+//        opps.remove(opportunity);
+//        backlogRepository.save(backlog);
+
+        opportunityRepository.delete(opportunity);
 
     }
 
