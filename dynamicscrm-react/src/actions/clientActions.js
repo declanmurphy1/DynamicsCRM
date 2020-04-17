@@ -3,7 +3,7 @@ import { GET_ERRORS, GET_CLIENTS, GET_CLIENT, DELETE_CLIENT } from "./types";
 
 export const createClient = (client, history) => async (dispatch) => {
   try {
-    const res = await axios.post("http://localhost:8080/api/client", client);
+    await axios.post("http://localhost:8080/api/client", client);
     history.push("/dashboard");
     dispatch({
       type: GET_ERRORS,

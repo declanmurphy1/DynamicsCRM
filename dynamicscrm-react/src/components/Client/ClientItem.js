@@ -40,14 +40,14 @@ class ClientItem extends Component {
             </div>
             <div className="col-md-4 d-none d-lg-block">
               <ul className="list-group">
-                <a href="#">
+                <Link to={`/opportunityBoard/${client.clientIdentifier}`}>
                   <li className="list-group-item board">
                     <i className="fa fa-flag-checkered pr-1">
                       {" "}
                       View Opportunities{" "}
                     </i>
                   </li>
-                </a>
+                </Link>
                 <br />
                 <a href="#">
                   <li className="list-group-item board">

@@ -8,6 +8,8 @@ import AddClient from "./components/Client/AddClient";
 import { Provider } from "react-redux";
 import store from "./store";
 import UpdateClient from "./components/Client/UpdateClient";
+import OpportunityBoard from "./components/OpportunityBoard/OpportunityBoard";
+import AddOpportunity from "./components/OpportunityBoard/Opportunities/AddOpportunity";
 
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/addClient" component={AddClient} />
           <Route exact path="/updateClient/:id" component={UpdateClient}/>
+          <Route exact path="/opportunityBoard/:id" component={OpportunityBoard}/>
+          <Route exact path="/addOpportunity/:id" component={AddOpportunity}/>
         </div>
       </Router>
     </Provider>

@@ -24,6 +24,9 @@ public class Opportunity {
     @NotNull(message = "Close Date is required")
     private Date closeDate;
 
+    @NotNull(message = "Please Enter and Opportunity Value")
+    private Double oppValue;
+
 //    Many to One with the backlog
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "backlog_id", updatable = false, nullable = false)
@@ -37,6 +40,14 @@ public class Opportunity {
     private Date update_At;
 
     public Opportunity() {
+    }
+
+    public Double getOppValue() {
+        return oppValue;
+    }
+
+    public void setOppValue(Double oppValue) {
+        this.oppValue = oppValue;
     }
 
     public Long getId() {
