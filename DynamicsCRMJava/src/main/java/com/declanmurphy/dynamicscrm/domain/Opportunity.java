@@ -1,5 +1,6 @@
 package com.declanmurphy.dynamicscrm.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Opportunity {
     private String stage;
     private Integer outcome;
     @NotNull(message = "Close Date is required")
+    @JsonFormat(pattern = "yyyy-mm-dd")
     private Date closeDate;
     @NotBlank(message = "Opportunity Owner is required")
     private String owner;

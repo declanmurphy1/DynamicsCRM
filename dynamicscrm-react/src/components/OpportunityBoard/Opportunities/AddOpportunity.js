@@ -160,7 +160,7 @@ class AddOpportunity extends Component {
                 <div className="form-group">
                   <select className="form-control form-control-lg" name="stage" value={this.state.stage} onChange={this.onChange}>
                     <option value="">Select Stage</option>
-                    <option value="IDENTIFYING_NEEDS">Identifying Needs</option>
+                    <option value="IDENTIFYING">Identifying Needs</option>
                     <option value="PROPOSING">Proposing</option>
                     <option value="NEGOTIATING">Negotiating</option>
                     <option value="CLOSED">Closed</option>
