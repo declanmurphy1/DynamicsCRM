@@ -28,6 +28,12 @@ class AddOpportunity extends Component {
     this.onSubmit=this.onSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+      if(nextProps.errors) {
+          this.setState({errors:nextProps.errors});
+      }
+  }
+
   onChange(e) {
       this.setState({[e.target.name]:e.target.value})
   }
@@ -50,6 +56,7 @@ class AddOpportunity extends Component {
 
   render() {
     const { id } = this.props.match.params;
+    const {errors} = this.state;
     return (
       <div className="add-PBI">
         <div className="container">
@@ -64,12 +71,17 @@ class AddOpportunity extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg",{"is-invalid":errors.oppName})}
                     name="oppName"
                     placeholder="Opportunity Name"
                     value={this.state.oppName}
                     onChange={this.onChange}
                   />
+                  {
+                      errors.oppName && (
+                          <div className="invalid-feedback">{errors.oppName}</div>
+                      )
+                  }
                 </div>
                 <div className="form-group">
                   <textarea
@@ -83,16 +95,21 @@ class AddOpportunity extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg",{"is-invalid":errors.owner})}
                     name="owner"
                     placeholder="Opportunity Owner"
                     value={this.state.owner}
                     onChange={this.onChange}
                   />
+                  {
+                    errors.owner && (
+                        <div className="invalid-feedback">{errors.owner}</div>
+                    )
+                }
                 </div>
                 <div className="form-group">
                   <select
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg",{"is-invalid":errors.department})}
                     name="department"
                     value={this.state.department}
                     onChange={this.onChange}
@@ -103,6 +120,11 @@ class AddOpportunity extends Component {
                     <option value="DATA_ANALYTICS">Data & Analytics</option>
                     <option value="PROJECT">Project Management</option>
                   </select>
+                  {
+                    errors.department && (
+                        <div className="invalid-feedback">{errors.department}</div>
+                    )
+                }
                 </div>
                 <h6>Opportunity Value</h6>
                 <div className="input-group mb-3">
@@ -124,11 +146,16 @@ class AddOpportunity extends Component {
                 <div className="form-group">
                   <input
                     type="date"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg",{"is-invalid":errors.closeDate})}
                     name="closeDate"
                     value={this.state.closeDate}
                     onChange={this.onChange}
                   />
+                  {
+                    errors.closeDate && (
+                        <div className="invalid-feedback">{errors.closeDate}</div>
+                    )
+                }
                 </div>
                 <div className="form-group">
                   <select className="form-control form-control-lg" name="stage" value={this.state.stage} onChange={this.onChange}>
@@ -170,6 +197,11 @@ class AddOpportunity extends Component {
 
 AddOpportunity.propTypes = {
   addOpportunity: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired
 };
 
-export default connect(null, { addOpportunity })(AddOpportunity);
+const mapStateToProps=state=> ({
+    errors: state.errors
+})
+
+export default connect(mapStateToProps, { addOpportunity })(AddOpportunity);
