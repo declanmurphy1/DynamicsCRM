@@ -10,4 +10,8 @@ import java.util.List;
 public interface OpportunityRepository  extends CrudRepository<Opportunity, Long> {
 
     List<Opportunity> findByClientIdentifierOrderByOutcome(String id);
+
+    Opportunity findByClientSequence(String sequence);
+
+
 }

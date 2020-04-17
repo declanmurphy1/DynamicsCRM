@@ -41,4 +41,10 @@ public class BacklogController {
 
     }
 
+    @GetMapping("/{backlog_id}/{opp_id}")
+    public ResponseEntity<?> getOpportunity(@PathVariable String backlog_id, @PathVariable String opp_id){
+        Opportunity opportunity = opportunityService.findOppByClientSequence(backlog_id, opp_id);
+        return new ResponseEntity<Opportunity>(opportunity, HttpStatus.OK);
+    }
+
 }

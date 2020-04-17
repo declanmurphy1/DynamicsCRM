@@ -13,7 +13,7 @@ public class Opportunity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(updatable = false)
+    @Column(updatable = false, unique = true)
     private String clientSequence;
 
     @NotBlank(message = "Opportunity Name is required")

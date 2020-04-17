@@ -69,6 +69,26 @@ public class OpportunityService {
         return opportunityRepository.findByClientIdentifierOrderByOutcome(id);
     }
 
+    public Opportunity findOppByClientSequence(String backlog_id, String opp_id){
+
+        Backlog backlog = backlogRepository.findByClientIdentifier(backlog_id);
+        if (backlog == null) {
+            throw new ClientNotFoundException("Client with ID: '" + backlog_id + "' does not exist");
+        }
+
+        Opportunity opportunity = opportunityRepository.findByClientSequence(opp_id);
+
+        if (opportunity == null) {
+            throw new ClientNotFoundException("Opportunity '" + opp_id + "' not found");
+        }
+
+        if (!opportunity.getClientIdentifier().equals(backlog_id)) {
+            throw new ClientNotFoundException("Opportunity '" + opp_id + "' does not exist for client '" + backlog_id + "'");
+        }
+        
+        return opportunity;
+    }
+
 
 
 }
