@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Opportunity from "./Opportunities/Opportunity";
 
 class Backlog extends Component {

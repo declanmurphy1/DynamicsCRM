@@ -26,8 +26,7 @@ export default function (state = initialState, action) {
     case DELETE_OPPORTUNITY:
       return {
         ...state,
-
-        // TO_DO
+        opportunities: state.opportunities.filter(opportunity => opportunity.clientSequence !== action.payload)
       };
 
     default:

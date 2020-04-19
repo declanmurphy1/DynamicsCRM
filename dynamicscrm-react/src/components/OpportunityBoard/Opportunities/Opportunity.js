@@ -1,7 +1,15 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {deleteOpportunity} from "../../../actions/backlogActions"
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 class Opportunity extends Component {
+
+  onDeleteClick(backlog_id, opp_id){
+    this.props.deleteOpportunity(backlog_id, opp_id)
+  }
+
   render() {
     const { opportunity } = this.props;
 
@@ -58,15 +66,20 @@ class Opportunity extends Component {
           </h6>
           <h6 className="card-title">€{opportunity.oppValue}</h6>
 
-          <Link to={`/#`} className="btn btn-primary">
+          <Link to={`/updateOpportunity/${opportunity.clientIdentifier}/${opportunity.clientSequence}`} className="btn btn-primary">
             View / Update
           </Link>
 
-          <button className="btn btn-danger ml-4">Delete</button>
+          <button className="btn btn-danger ml-4" onClick={this.onDeleteClick.bind(this, opportunity.clientIdentifier, opportunity.clientSequence)}>Delete</button>
         </div>
       </div>
     );
   }
 }
 
-export default Opportunity;
+
+Opportunity.propTypes = {
+  deleteOpportunity: PropTypes.func.isRequired
+};
+
+export default connect(null, {deleteOpportunity})(Opportunity);

@@ -44,7 +44,7 @@ const boardAlgorithm = (errors, opportunities) =>{
   if(opportunities.length < 1) {
     if(errors.clientIdentifier){
       return(
-        <div className="alert alert-danger text-center" role="slert">
+        <div className="alert alert-danger text-center" role="alert">
         {errors.clientIdentifier}
         </div>
       )
