@@ -16,18 +16,18 @@ class Backlog extends Component {
     let closedItems = [];
 
     for (let i = 0; i < opps.length; i++) {
-      if(opps[i].props.opportunity.stage === "IDENTIFYING"){
-          identifyingItems.push(opps[i]);
+      if (opps[i].props.opportunity.stage === "IDENTIFYING") {
+        identifyingItems.push(opps[i]);
       }
-      if(opps[i].props.opportunity.stage === "PROPOSING"){
+      if (opps[i].props.opportunity.stage === "PROPOSING") {
         proposingItems.push(opps[i]);
-    }
-    if(opps[i].props.opportunity.stage === "NEGOTIATING"){
+      }
+      if (opps[i].props.opportunity.stage === "NEGOTIATING") {
         negotiatingItems.push(opps[i]);
-    }
-    if(opps[i].props.opportunity.stage === "CLOSED"){
+      }
+      if (opps[i].props.opportunity.stage === "CLOSED") {
         closedItems.push(opps[i]);
-    }
+      }
     }
 
     return (
@@ -39,7 +39,6 @@ class Backlog extends Component {
             </div>
           </div>
           {identifyingItems}
-          
         </div>
         <div className="col-md-3">
           <div className="card text-center mb-2">
