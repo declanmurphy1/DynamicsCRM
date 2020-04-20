@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Client {
@@ -44,6 +46,10 @@ public class Client {
     @JsonIgnore
     private Backlog backlog;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
+    @JsonIgnore
+    private List<Contact> contacts = new ArrayList<>();
+
     public Client() {
     }
 
@@ -53,6 +59,14 @@ public class Client {
 
     public void setIndustry(String industry) {
         this.industry = industry;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<Contact> contacts) {
+        this.contacts = contacts;
     }
 
     public Long getId() {

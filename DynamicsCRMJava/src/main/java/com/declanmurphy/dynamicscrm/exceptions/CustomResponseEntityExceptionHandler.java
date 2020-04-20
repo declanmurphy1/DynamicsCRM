@@ -23,4 +23,16 @@ public class CustomResponseEntityExceptionHandler extends ResponseEntityExceptio
         ClientNotFoundExceptionResponse exceptionResponse = new ClientNotFoundExceptionResponse(ex.getMessage());
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleContactEmailException(ContactEmailException ex, WebRequest request) {
+        ContactEmailExceptionResponse exceptionResponse = new ContactEmailExceptionResponse(ex.getMessage());
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public final ResponseEntity<Object> handleContactNotFoundException(ContactNotFoundException ex, WebRequest request){
+        ContactNotFoundExceptionResponse exceptionResponse = new ContactNotFoundExceptionResponse(ex.getMessage());
+        return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
+    }
 }
