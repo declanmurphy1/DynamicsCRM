@@ -20,6 +20,7 @@ public class Contact {
     private String jobTitle;
     @Column(unique = true)
     private String email;
+    private String phone;
     private String notes;
 
     private String clientIdentifier;
@@ -77,6 +78,14 @@ public class Contact {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getJobTitle() {

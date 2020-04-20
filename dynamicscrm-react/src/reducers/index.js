@@ -2,9 +2,11 @@ import { combineReducers } from "redux";
 import errorReducer from "./errorReducer";
 import clientReducer from "./clientReducer";
 import backlogReducer from "./backlogReducer";
+import contactReducer from "./contactReducer";
 
 export default combineReducers({
   errors: errorReducer,
   client: clientReducer,
-  backlog: backlogReducer
+  backlog: backlogReducer,
+  contact: contactReducer
 });

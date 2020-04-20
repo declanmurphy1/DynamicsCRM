@@ -11,6 +11,7 @@ import UpdateClient from "./components/Client/UpdateClient";
 import OpportunityBoard from "./components/OpportunityBoard/OpportunityBoard";
 import AddOpportunity from "./components/OpportunityBoard/Opportunities/AddOpportunity";
 import UpdateOpportunity from "./components/OpportunityBoard/Opportunities/UpdateOpportunity";
+import ContactBoard from "./components/ContactBoard/ContactBoard";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/opportunityBoard/:id" component={OpportunityBoard}/>
           <Route exact path="/addOpportunity/:id" component={AddOpportunity}/>
           <Route exact path="/updateOpportunity/:backlog_id/:opp_id" component={UpdateOpportunity}/>
+          <Route exact path="/contactBoard/:id" component={ContactBoard}/>
         </div>
       </Router>
     </Provider>
