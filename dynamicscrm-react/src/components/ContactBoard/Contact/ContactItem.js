@@ -39,7 +39,7 @@ class ContactItem extends Component {
                   <ul className="list-group">
                     <br />
                     <br />
-                    <Link to={`/updateClient/${contact.clientIdentifier}`}>
+                    <Link to={`/updateContact/${contact.id}/${contact.clientIdentifier}`}>
                       <li className="list-group-item update">
                         <i className="fa fa-edit pr-1"> Update Contact Info</i>
                       </li>
