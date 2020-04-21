@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import {deleteContact} from "../../../actions/contactActions";
 
 class ContactItem extends Component {
+  onDeleteClick(contact_id){
+    this.props.deleteContact(contact_id)
+  }
+
     render() {
         const {contact} = this.props;
         return (
@@ -44,7 +49,7 @@ class ContactItem extends Component {
                       className="list-group-item delete"
                       
                     >
-                      <i className="fa fa-minus-circle pr-1"> Delete Contact</i>
+                      <i className="fa fa-minus-circle pr-1" onClick={this.onDeleteClick.bind(this, contact.id)}> Delete Contact</i>
                     </li>
                   </ul>
                 </div>
@@ -55,5 +60,9 @@ class ContactItem extends Component {
     }
 }
 
+ContactItem.propTypes = {
+  deleteContact: PropTypes.func.isRequired
+}
 
-export default ContactItem;
+
+export default connect(null, {deleteContact})(ContactItem);

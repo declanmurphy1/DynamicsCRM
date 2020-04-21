@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_CONTACTS, GET_ERRORS } from "./types";
+import { GET_CONTACTS, GET_ERRORS, DELETE_CONTACT } from "./types";
 
 export const getContacts = (client_id) => async (dispatch) => {
   try {
@@ -17,3 +17,31 @@ export const getContacts = (client_id) => async (dispatch) => {
     });
   }
 };
+
+export const addContact = (client_id, contact, history) => async (dispatch) => {
+    try {
+        await axios.post(`http://localhost:8080/api/contact/${client_id}`, contact);
+        history.push(`/contactBoard/${client_id}`);
+        dispatch({
+            type: GET_ERRORS,
+            payload: {},
+        })
+    } catch (err) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: err.response.data,
+          });
+    }
+}
+
+export const deleteContact = (contact_id) => async dispatch => {
+    if(window.confirm(`Click OK to delete the Contact`)){
+      await axios.delete(`http://localhost:8080/api/contact/id/${contact_id}`)
+      dispatch({
+        type: DELETE_CONTACT,
+        payload: contact_id
+      })
+    }
+  
+  
+  }

@@ -18,8 +18,10 @@ public class Contact {
     @NotBlank(message = "Please include a last name")
     private String lastName;
     private String jobTitle;
+    @NotBlank(message = "Please include a valid email")
     @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String phone;
     private String notes;
 
