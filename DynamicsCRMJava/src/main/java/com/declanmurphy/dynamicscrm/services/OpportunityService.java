@@ -44,12 +44,17 @@ public class OpportunityService {
             opportunity.setClientIdentifier(clientIdentifier);
 
             if (opportunity.getOutcome() == 0 || opportunity.getOutcome() == null) { // in the future we need to handle case for outcome set to 0
-                opportunity.setOutcome(3);
+                opportunity.setOutcome(1);
             }
 
             if (opportunity.getStage() == "" || opportunity.getStage() == null) {
-                opportunity.setStage("Identifying Needs");
+                opportunity.setStage("IDENTIFYING");
             }
+
+            if (opportunity.getOutcome() < 2 && opportunity.getStage() == "CLOSED") {
+                opportunity.setOutcome(3);
+            }
+
 
             return opportunityRepository.save(opportunity);
         } catch (Exception e) {
@@ -96,6 +101,14 @@ public class OpportunityService {
 
 
         opportunity = updatedOpp;
+
+        if (opportunity.getOutcome() == 0 || opportunity.getOutcome() == null) {
+            opportunity.setOutcome(1);
+        }
+
+        if (opportunity.getOutcome() < 2 && opportunity.getStage().equals("CLOSED")) {
+            opportunity.setOutcome(3);
+        }
 
         return opportunityRepository.save(opportunity);
     }

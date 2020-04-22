@@ -11,7 +11,14 @@ public interface OpportunityRepository  extends CrudRepository<Opportunity, Long
 
     List<Opportunity> findByClientIdentifierOrderByOutcome(String id);
 
+    List<Opportunity> findAll();
+
     Opportunity findByClientSequence(String sequence);
+
+    List<Opportunity> findAllByClientIdentifierAndStageNotContains(String identifier, String stage);
+
+    List<Opportunity> findAllByClientIdentifierAndStageEquals(String identifier, String stage);
+
 
 
 }

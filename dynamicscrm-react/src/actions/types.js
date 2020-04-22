@@ -16,3 +16,10 @@ export const GET_CONTACTS = "GET_CONTACTS";
 export const GET_CONTACT = "GET_CONTACT";
 export const DELETE_CONTACT = "DELETE_CONTACT";
 
+
+
+// Types for Dashboard
+
+export const GET_CLIENT_NAMES = "GET_CLIENT_NAMES";
+export const GET_OPEN_OPPS = "GET_OPEN_OPPS";
+
