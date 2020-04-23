@@ -14,7 +14,6 @@ import UpdateOpportunity from "./components/OpportunityBoard/Opportunities/Updat
 import ContactBoard from "./components/ContactBoard/ContactBoard";
 import AddContact from "./components/ContactBoard/Contact/AddContact";
 import UpdateContact from "./components/ContactBoard/Contact/UpdateContact";
-import Reporting from "./components/Homepage/Reporting";
 import Report from "./components/Homepage/Report";
 
 

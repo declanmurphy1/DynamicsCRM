@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Plotly from "plotly.js-basic-dist";
 import createPlotlyComponent from "react-plotly.js/factory";
-import { getClientNames, getOpenOpps } from "../../actions/dashboardActions";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
 import axios from "axios";
 
 const Plot = createPlotlyComponent(Plotly);
@@ -71,13 +68,6 @@ class Report extends Component {
       });
   }
   render() {
-    var oppVal = this.state.data.map((val, i) => {
-      return val.oppValue;
-    });
-
-    var oppNam = this.state.data.map((val, i) => {
-      return val.stage;
-    });
 
     var oppStage = this.state.pieData.map((val, i) => {
       return val.stage;
